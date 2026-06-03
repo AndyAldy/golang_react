@@ -1,0 +1,252 @@
+/* --- BASE & COLOR GRADING --- */
+:root {
+    --bg-main: #0f172a; /* Slate 900 */
+    --bg-sidebar: rgba(15, 23, 42, 0.95);
+    --bg-panel: rgba(30, 41, 59, 0.7);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-blue: #3b82f6;
+    --accent-blue-hover: #2563eb;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: var(--bg-main);
+    background-image: radial-gradient(circle at top right, #1e293b 0%, #0f172a 100%);
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: var(--text-primary);
+    height: 100vh;
+    overflow: hidden; /* Mencegah scroll di body */
+}
+
+/* --- APP LAYOUT (SIDEBAR & MAIN) --- */
+.app-layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.app-layout.loaded {
+    opacity: 1;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+    width: 240px;
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    backdrop-filter: blur(10px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    padding-left: 10px;
+}
+
+.brand h2 {
+    margin: 0;
+    font-size: 22px;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-btn {
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    padding: 14px 16px;
+    border-radius: 12px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.nav-btn.active {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--accent-blue);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+    flex: 1;
+    padding: 40px 60px;
+    overflow-y: auto; /* Konten utama bisa discroll jika panjang */
+}
+
+.page-header {
+    margin-bottom: 35px;
+}
+
+.page-header h2 {
+    font-size: 32px;
+    margin: 0 0 8px 0;
+    color: var(--text-primary);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 15px;
+}
+
+/* --- GLASSMORPHISM PANEL --- */
+.glass-panel {
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* --- BERANDA STYLES --- */
+.summary-card {
+    text-align: center;
+    max-width: 400px;
+    margin-top: 20px;
+}
+
+.big-number {
+    font-size: 72px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #34d399, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 10px 0;
+}
+
+/* --- FORM & INPUTS --- */
+.form-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+input {
+    flex: 1;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus { border-color: var(--accent-blue); }
+
+.btn-tambah {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-tambah:hover {
+    background: var(--accent-blue-hover);
+    transform: translateY(-2px);
+}
+
+.mt-4 { margin-top: 20px; }
+
+/* --- LIST & CARDS --- */
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    padding: 18px 22px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.card:hover { transform: translateX(5px); border-color: rgba(255, 255, 255, 0.2); }
+
+.card.selesai { opacity: 0.5; }
+.card.selesai .info h3 { text-decoration: line-through; color: var(--text-secondary); }
+
+.info h3 { margin: 0 0 6px 0; font-size: 16px; }
+.info p { margin: 0; font-size: 13px; color: var(--text-secondary); }
+
+/* --- BUTTON UX --- */
+.aksi { display: flex; gap: 10px; }
+
+.btn-toggle, .btn-delete {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.btn-toggle { background: rgba(255, 255, 255, 0.05); color: var(--text-primary); border: 1px solid var(--border-color); }
+.btn-toggle:hover { background: rgba(255, 255, 255, 0.1); }
+.btn-toggle.active { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border-color: rgba(16, 185, 129, 0.3); }
+
+.btn-delete { background: rgba(239, 68, 68, 0.1); color: var(--accent-red); }
+.btn-delete:hover { background: var(--accent-red); color: white; }
+
+/* --- EMPTY STATE & INFO --- */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed var(--border-color);
+    border-radius: 16px;
+}
+
+.empty-icon { font-size: 40px; margin-bottom: 15px; }
+
+.info-text p { color: var(--text-secondary); line-height: 1.6; }
+.info-text ul { color: var(--text-secondary); line-height: 1.8; padding-left: 20px; }
+.info-text strong { color: var(--text-primary); }
+
+/* --- ANIMATIONS --- */
+.fadeIn {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
